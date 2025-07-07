@@ -129,11 +129,8 @@ const foods = [
 
 const seedFoods = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI)
-    console.log('Connected to MongoDB')
-    
-    await Food.deleteMany({})
-    console.log('Cleared existing foods')
+    await mongoose.connect(process.env.DB)
+  
     
     await Food.insertMany(foods)
     console.log('Seeded foods successfully')
