@@ -1,19 +1,23 @@
 import mongoose from 'mongoose'
 
-const WeightLogSchema = new mongoose.Schema({
+const WaterConsumptionSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
-  weight: {
+  water: {
     type: Number,
     required: true
   },
   date: {
     type: Date,
     required: true
+  },
+  time: {
+    type: String,
+    required: true
   }
 }, { timestamps: true })
 
-export default mongoose.model('WeightLog', WeightLogSchema)
+export default mongoose.model('WaterConsumption', WaterConsumptionSchema)

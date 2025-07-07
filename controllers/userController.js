@@ -1,23 +1,38 @@
-import User from '../models/User.js';
+import User from '../models/User.js'
 
 export const getProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select('-password');
-    res.json(user);
+    const user = await User.findById(req.user.id)
+    res.json(user)
   } catch (error) {
-    res.status(500).json({ error: 'Server Error' });
+    res.status(500).json({ message: error.message })
   }
-};
+}
 
 export const updateProfile = async (req, res) => {
   try {
-    const updatedUser = await User.findByIdAndUpdate(req.user.id, req.body, {
-      new: true,
-      runValidators: true
-    }).select('-password');
-
-    res.json(updatedUser);
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
+      req.body,
+      { new: true, runValidators: true }
+    )
+    res.json(user)
   } catch (error) {
-    res.status(500).json({ error: 'Server Error' });
+    res.status(500).json({ message: error.message })
   }
-};
+}
+
+export const updateTargets = async (req, res) => {
+  try {
+    const { targetCalories, targetProtein, targetCarbs, targetFat, targetWater } = req.body
+    
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
+      { targetCalories, targetProtein, targetCarbs, targetFat, targetWater },
+      { new: true, runValidators: true }
+    )
+    res.json(user)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}

@@ -1,15 +1,51 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
 const FoodSchema = new mongoose.Schema({
-  name: { type: String, required: true, index: true },
-  weight: { type: Number, required: true }, // e.g., per 100g
-  calories: { type: Number, required: true },
-  protein: { type: Number, required: true },
-  carbs: { type: Number, required: true },
-  fat: { type: Number, required: true },
-  micronutrients: mongoose.Schema.Types.Mixed,
-  isVeg: { type: Boolean, default: true }
-});
+  name: {
+    type: String,
+    required: true,
+    index: true
+  },
+  weight: {
+    type: Number,
+    required: true,
+    default: 100
+  },
+  calories: {
+    type: Number,
+    required: true
+  },
+  protein: {
+    type: Number,
+    required: true,
+    default: 0
+  },
+  carbs: {
+    type: Number,
+    required: true,
+    default: 0
+  },
+  fat: {
+    type: Number,
+    required: true,
+    default: 0
+  },
+  fiber: {
+    type: Number,
+    default: 0
+  },
+  sugar: {
+    type: Number,
+    default: 0
+  },
+  sodium: {
+    type: Number,
+    default: 0
+  },
+  isVeg: {
+    type: Boolean,
+    default: false
+  }
+}, { timestamps: true })
 
-const Food = mongoose.model('Food', FoodSchema);
-export default Food;
+export default mongoose.model('Food', FoodSchema)
